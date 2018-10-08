@@ -1,7 +1,9 @@
 import ApiService from '../common/api.service'
 import JwtService from '../common/jwt.service'
+import queryBuilder from 'gql-query-builder'
 import { LOGIN, LOGOUT, REGISTER, CHECK_AUTH, UPDATE_USER } from './actions.type'
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from './mutations.type'
+import { API_URL } from '../common/config';
 
 const state = {
   errors: null,
@@ -20,17 +22,51 @@ const getters = {
 
 const actions = {
   [LOGIN] (context, credentials) {
-    alert("Got it")
+    alert("Got it a")
     return new Promise((resolve) => {
       ApiService
-        .post('users/login', {user: credentials})
-        .then(({data}) => {
-          context.commit(SET_AUTH, data.user)
-          resolve(data)
+      .post(API_URL, queryBuilder({
+        type: 'query',
+        operation: 'userLogin',
+        data: credentials,
+        fields: ['user {name, email, role}', 'token']
+      }))
+        .then(response => {
+          alert("Got Response: " + JSON.stringify(response))
+          let error = ''
+
+          if (response.data.errors && response.data.errors.length > 0) {
+            alert("Got Errors: " + JSON.stringify(response.data.errors))
+
+            error = response.data.errors[0].message
+          } else if (response.data.data.userLogin.token !== '') {
+            const token = response.data.data.userLogin.token
+            const user = response.data.data.userLogin.user
+            alert("Got it d")
+            // dispatch(setUser(token, user))
+            // loginSetUserLocalStorageAndCookie(token, user)
+          }
+
+          dispatch({
+            type: LOGIN_RESPONSE,
+            error
+          })
         })
-        .catch(({response}) => {
-          context.commit(SET_ERROR, response.data.errors)
+        .catch(error => {
+          alert("Got it e")
+          dispatch({
+            type: LOGIN_RESPONSE,
+            error: 'Please try again'
+          })
         })
+        // .post('users/login', {user: credentials})
+        // .then(({data}) => {
+        //   context.commit(SET_AUTH, data.user)
+        //   resolve(data)
+        // })
+        // .catch(({response}) => {
+        //   context.commit(SET_ERROR, response.data.errors)
+        // })
     })
   },
   [LOGOUT] (context) {

@@ -6,8 +6,9 @@ import { API_URL } from './config'
 
 const ApiService = {
     init() {
-        // Vue.use(VueAxios, axios)
-        // Vue.axios.defaults.baseURL = API_URL
+        Vue.http = axios
+        Vue.use(VueAxios, axios)
+        Vue.axios.defaults.baseURL = API_URL
     },
 
     setHeader() {
@@ -31,6 +32,7 @@ const ApiService = {
     },
 
     post(resource, params) {
+        alert(JSON.stringify(params))
         return Vue.axios.post(`${resource}`, params)
     },
 

@@ -42,12 +42,8 @@ export default {
   methods: {
     processForm: function() {
       if (this.user.email != "" && this.user.password != "") {
-       const userCredentials = {
-        email: 'a@gmail.com',
-        password: '1234',
-      }
         this.$store
-          .dispatch(LOGIN, { userCredentials })
+          .dispatch(LOGIN, this.user)
           .then(() => this.$router.push({ name: 'home' }))
       }
     },

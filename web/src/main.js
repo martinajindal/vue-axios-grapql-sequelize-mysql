@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource';
+// import VueResource from 'vue-resource';
 
 import App from './App.vue'
 import routes from './router';
@@ -8,9 +8,7 @@ import store from './store';
 import ApiService from './common/api.service'
 import { API_URL } from './common/config'
 
-
-Vue.use(VueResource); 
-Vue.http.options.root = API_URL;
+//Vue.use(VueResource); 
 
 ApiService.init()
 
@@ -27,3 +25,4 @@ new Vue({
   store,
   render: h => h(App)
 })
+Vue.http.options.root = API_URL
