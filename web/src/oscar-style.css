@@ -1,0 +1,549 @@
+/* default styles for all HMTL elements without padding and/or margins and/or borders */
+
+  .intragap {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .fmtext {
+    /*display: inline-block;*/
+    color: #656565;
+    padding: 0px 0px 0px 10px;
+  }
+  .fminput {
+    background: #e7e7e7;
+    border-bottom: #d3d3d3 1px solid;
+    border-left: #d3d3d3 1px solid;
+    border-right: #d3d3d3 1px solid;
+    border-top: #9f9f9f 1px solid;
+    color: #474747;   /* NOT style guide */
+    font-family: arial;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 1px;
+    padding: 2px 5px;
+  }
+  
+.vmid {
+  vertical-align: bottom;
+}
+a.linkanc {
+  color: #0088cc;
+  text-decoration: none;
+}
+  .fmlabel-top {
+    color: #939393;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0px 0px 0px 10px;
+  }
+  .fmlabel-center {
+    color: #939393;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0px 0px 0px 10px;
+  }
+  
+  .intergap {
+    height: 6px;
+  }
+  
+  table.max {
+    width: 100%;
+  }
+  .center {
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+.smenu {
+  float: left;
+  width: 899px;
+  padding: 20px 0px 1px 0px;
+  position: relative;
+  height: 32px;
+  color: black;
+  font: 15px arial;
+}
+
+  .box {
+    padding: 20px 5px 5px 5px;
+    width: 100%;
+    height: 100%;
+    height: 500px;
+    border: 1px solid #C0C0C0;
+    background: #DCDCDC;
+    float: center;
+  }
+  .topbar {
+    padding: 20px 5px 5px 5px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #C0C0C0;
+    background: #DCDCDC;
+    float: center;
+  }
+  .loginbox {
+    margin: auto;
+    padding: 20px 0px 1px 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #C0C0C0;
+    background: #DCDCDC;
+    float: center;
+  }
+
+  .smallbox {
+    margin: auto;
+    max-width: 90px;
+    height: 50px;
+    border: 1px solid #C0C0C0;
+    background: blue;
+  }
+  .container {
+    margin: 20px;
+    float: center;
+    width: 100%;
+    height: 100%;   
+    background: #fff;
+    color: #656565;
+    font: 11px arial
+  }
+  .content {
+    padding: 9px 11px 10px;
+    float: left;
+
+  }
+  
+  .text {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: normal;
+    text-align: left;
+    color: #5d5d5d;
+    text-decoration: none;
+ }
+.textlabel {
+    color: #939393;
+    text-align: left;
+    font-weight: bold;
+    text-align: left;
+  }
+/* New style buttons */
+  .btn {
+    background: no-repeat;
+    border: none;
+    justify-content: center;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: FontAwesome, sans-serif; /* Font Awesome will help convert hex code values passed in button tag's 'value' field to convert into relevant font awesome icon*/
+    font-weight: bold;
+    height: 24px;
+    padding: 0px 0px 1px 0px;
+  }
+  .title:not(:last-child), .subtitle:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+  .title {
+    color: #363636;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.125;
+}
+.title, .subtitle {
+    word-break: break-word;
+}
+.has-text-centered {
+    text-align: center !important;
+}
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+.label {
+    color: #363636;
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25em;
+    line-height: 1;
+}
+field:not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+.input, .textarea {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2.25em;
+    line-height: 1.5;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+    vertical-align: top;
+    background-color: white;
+    border-color: #dbdbdb;
+    color: #363636;
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+    max-width: 100%;
+    width: 80%;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-rendering: auto;
+    box-sizing: inherit;
+    margin: 20px;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    text-align: start;
+
+
+}
+.help.is-danger {
+    color: #b60023;
+}
+
+.button.is-danger {
+    text-align: center;
+    background-color: #c33636;
+    border-color: transparent;
+    color: #fff;
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------------------------------- */
+  .circlular_point_list {
+      position: relative;
+      left: 15px;
+      padding-left: 20px;
+      list-style: circle;
+  }
+  
+  .square_point_list {
+      position: relative;
+      left: 15px;
+      margin-left: 0px;
+      padding-left: 20px;
+      list-style: square;
+  }
+  
+  .fleft {
+    float: left;
+  }
+  
+  .fright {
+    float: right;
+  }
+  
+  .clear {
+    clear: both;
+  }
+  
+  .deleted {
+    text-decoration:line-through
+  }
+  
+  .vmid {
+    vertical-align: middle;
+  }
+  
+  .vtop {
+    vertical-align: top;
+  }
+  
+  .vbot {
+    vertical-align: bottom;
+  }
+  
+  .tright {
+    text-align: right;
+  }
+  
+  .tleft {
+    text-align: left;
+  }
+  
+  .tcenter {
+    text-align: center;
+  }
+  
+  .whttxt {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .bldtxt {
+    color: #939393;
+    font-weight: bold;
+  }
+  
+  a.linkblue {
+    color: #0088cc;
+    text-decoration: underline;
+  }
+  
+  a.linkblue:hover {
+    color: #0088cc;
+    text-decoration: underline;
+  }
+  
+  a.linkanc {
+    color: #0088cc;
+    text-decoration: none;
+  }
+  
+  a.linkanc:hover {
+    color: #0088cc;
+    text-decoration: underline;
+  }
+  
+  a.linkgrey {
+    color: #656565;
+    text-decoration: underline;
+  }
+  
+  a.linkgrey:hover {
+    color: #656565;
+    text-decoration: underline;
+  }
+  
+  .mandtxt {
+    color: #656565;
+  }
+  
+  .rdtxt {
+    color: #ff0000;
+  }
+  
+  .btxtgray {
+    color: #474747;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .btxt {
+    color: #474747;
+    font-weight: bold;
+  }
+  
+  .graytxt {
+    color: #474747;
+  }
+  
+  .data {
+    background-color: #F5F0F9;
+    font-weight: normal;
+  }
+  
+  .sla3 {
+    background-color: #90E096;
+    font-weight: normal;
+  }
+  
+  .sla2 {
+    background-color: #798FE8;
+    font-weight: normal;
+  }
+  
+  .sla1 {
+    background-color: #FFBF00;
+    font-weight: normal;
+  }
+  
+  .sla2 a:link {
+    color: black;
+  }
+  
+  .sla2 a:visited {
+    color: black;
+  }
+  
+  .btngray {
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    text-decoration: none;
+  }
+  
+  .btngray .lcv {
+    display: inline-block;
+    height: 24px;
+  }
+  
+  .btngray .rcv {
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    padding: 4px 13px 0px;
+  }
+  
+  .btnblue {
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    text-decoration: none;
+  }
+  
+  .btnblue .lcv {
+    display: inline-block;
+    height: 24px;
+  }
+  
+  .btnblue .rcv {
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    padding: 4px 13px 0px;
+  }
+  
+  .main {
+    margin: 0px auto;
+    width: 998px;
+  }
+  
+  .main .head {
+    float: left;
+    padding: 0px 31px;
+    width: 936px;
+  }
+  
+  .main .head .services {
+    float: left;
+    width: 100%;
+  }
+  
+  .main .head .services ul.extlinks {
+    float: left;
+    max-width: 590px;
+  }
+  
+  .main .head .services ul.extlinks li {
+    display: inline-block;
+  }
+  
+  .main .head .services ul.extlinks li.expad {
+    padding-left: 7px;
+  }
+  
+  .main .head .services ul.extlinks li a.inner {
+    background: #b60023;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 1px 8px 2px 9px;
+    text-decoration: none;
+  }
+  
+  .main .head .services ul.extlinks li a.external {
+    background: #9b9b9b;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 1px 8px 2px 9px;
+    text-decoration: none;
+  }
+  
+  .main .head .services ul.helplinks {
+    float: right;
+    padding: 4px 0px 0px;
+    text-align: right;
+    /*width: 344px;*/
+  }
+  
+  .main .head .services ul.helplinks li {
+    color: #656565;
+    display: inline;
+    font-size: 12px;
+  }
+  .main .head .services ul.helplinks li a {
+    color: #656565;
+    font-size: 12px;
+    padding: 0px 2px;
+    text-decoration: none;
+  }
+  
+  .main .head .services ul.helplinks li a:hover {
+    color: #656565;
+    font-size: 12px;
+    padding: 0px 2px;
+    text-decoration: underline;
+  }
+  
+  .main .head .logos {
+    float: left;
+    padding-top: 20px;
+    width: 100%;
+  }
+  
+  .main .head .logos ul {
+    float: left;
+    list-style: none;
+    width: 223px;
+  }
+  
+  .main .head .logos ul li {
+    display: inline;
+  }
+  
+  .main .head .logos ul li img {
+    vertical-align: middle;
+  }
+  
+  .main .head .logos ul li.logossr {
+    padding-left: 27px;
+  }
+  
+  .main .head .logos ul li.logossr img {
+    margin-top: 6px;
+  }
+  
+  .main .head .logos .logo-ssr {
+    float: left;
+    padding-left: 29px;
+    width: 280px;
+  }
+  
+  .main .head .logos .logo-csm {
+    float: left;
+    padding-left: 29px;
+    width: 350px;
+  }
+  
+  .main .head .logos .logo-client {
+    float: right;
+    text-align: right;
+    width: 25%;
+  }
+  
+  .main .head .logos .logo-client img {
+    margin-top: 6px;
+  }
+  
+  .main .container {
+    background: #fff;
+    float: left;
+    width: 998px;
+  }
