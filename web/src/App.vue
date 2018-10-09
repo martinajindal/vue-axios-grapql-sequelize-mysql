@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style src="./oscar-style.css">
+<style >
 body {
   background-color: #f0f0f0;
 }

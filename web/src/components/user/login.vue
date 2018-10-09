@@ -19,8 +19,8 @@
 
 <script>
 import axios from 'axios';
-import queryBuilder from 'gql-query-builder'
-import { LOGIN } from '../../store/actions.type'
+import queryBuilder from 'gql-query-builder';
+import { LOGIN } from '../../store/actions.type';
 
 
 export default {

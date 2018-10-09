@@ -7,7 +7,7 @@
       <br>
       <input v-model="user.lastname" type="text" class="form-control" placeholder="Last name">
       <br>
-      <label for="inputEmail" class="sr-only">Email address</label>
+      <label for="email" class="sr-only">Email address</label>
       <input type="email" v-model="user.email" class="form-control" placeholder="Email address" required autofocus>
       <br>
       <label for="inputPassword" class="sr-only">Password</label>
@@ -15,7 +15,7 @@
 
       <button class="material-button-raised" @click="register">Register</button>
       <!-- <button class="material-button-raised"  @click="register">Register</button> -->
-      Have an account? <router-link to="/registration" activeClass="active"><a>Sign In</a></router-link>
+      Have an account? <router-link to="/login" activeClass="active"><a>Sign In</a></router-link>
     </form>
   </div>
 </template>
@@ -25,7 +25,6 @@
 export default {
   data() {
     return {
-      inValidCredential: false,
       user: {
         firstname: "",
         lastname: "",
@@ -38,17 +37,17 @@ export default {
         password: false
       }
     };
-  },
-  methods: {
-    register() {
-      alert("1");
-      let uri = "http://127.0.0.1:9000/register";
-      this.axios.post(uri, this.user).then(response => {
-        alert("2");
-        console.log(response.data);
-        alert("Succefully registered!!");
-      });
-    }
+  }
+  // methods: {
+  //   register() {
+  //     alert("1");
+  //     let uri = "http://127.0.0.1:9000/register";
+  //     this.axios.post(uri, this.user).then(response => {
+  //       alert("2");
+  //       console.log(response.data);
+  //       alert("Succefully registered!!");
+  //     });
+  //   }
 
     // register() {
     //   alert("response");
@@ -65,7 +64,7 @@ export default {
     //       }
     //     );
     // },
-  }
+  // }
 };
 </script>
 

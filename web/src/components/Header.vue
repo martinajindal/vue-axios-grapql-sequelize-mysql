@@ -1,28 +1,46 @@
 <template>
-      <div class="container">
-       <div class="row">
-             <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/logo.gif"></a>
-       </div>
+    <div class="container">
         <div class="row">
-            <div class="column">
-        <div class=" navbar" style="border: 1px solid #C0C0C0;  background: #da0b11; font-weight: bold">
-            <ul class="nav navbar-nav">
-                <router-link to="/home" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >Home</a></router-link>
-                <router-link to="/nsw"  activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >NSW</a></router-link>
-                <router-link to="/vic"  activeClass="active"  tag="li"><a style="font-size: 16px; color: #ffffff; " >VIC</a></router-link>                   
-                <router-link to="/qld" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >QLD</a></router-link>
-                <router-link to="/act" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >ACT</a></router-link>                                        
-                <router-link to="/wa" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >WA</a></router-link>
-                <router-link to="/tas" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >TAS</a></router-link>
-                <router-link to="/nt" activeClass="active" tag="li"><a style="font-size: 16px; color: #ffffff; " >NT</a></router-link>
-                <router-link to="/report" activeClass="active" tag="li" align="right"><a style="font-size: 16px; color: #ffffff;">Report</a></router-link>
-            </ul>                 
+            <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/logo.gif"></a>
         </div>
-            </div>
+        <div class="row">
+            <br>
+        </div>
+        <div class="row">
+            <!-- <div class="column"> -->
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <router-link tag="li" active-class="active" to="/home" exact><a>Home</a></router-link>
+                            <router-link tag="li" active-class="active" to="/nsw" exact><a>NSW</a></router-link>
+                            <router-link tag="li" active-class="active" to="/vic" exact><a>VIC</a></router-link>
+                            <router-link tag="li" active-class="active" to="/qld" exact><a>QLD</a></router-link>
+                            <router-link tag="li" active-class="active" to="/act" exact><a>ACT</a></router-link>
+                            <router-link tag="li" active-class="active" to="/wa" exact><a>WA</a></router-link>
+                            <router-link tag="li" active-class="active" to="/tas" exact><a>TAS</a></router-link>
+                            <router-link tag="li" active-class="active" to="/nt" exact><a>NT</a></router-link>
+                            <router-link tag="li" active-class="active" to="/report" exact><a>Report</a></router-link>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <router-link tag="li" active-class="active" to="/login" exact><a><span class="glyphicon glyphicon-log-in"></span> Login</a></router-link>
+                            <router-link tag="li" active-class="active" to="/registration" exact><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></router-link>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </template>
 
 <script>
+import "../assets/style.scss";
 export default {};
 </script>
