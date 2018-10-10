@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="">
             <div class="container">
-                <div class="col-md-8 col-md-offset-1">
+                <div class="">
                     <h4>Order NSW LRS Title Search</h4>
                     <hr><br>
                     <div class="row">
@@ -23,6 +23,8 @@
                             <a class="linkanc vmid" v-on:click.prevent="verifyTitleRef" href="">
                                 Verify Title Reference</a>
                         </div>
+                        </div>
+                    <div class="row">
                         <div class="col-md-6 col-md-offset-0"  v-if="verifyTitleRefSuccess">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -35,6 +37,7 @@
                                 </div>
                             </div>
                         </div>
+                    
                     </div>
 
                     <div class="row">

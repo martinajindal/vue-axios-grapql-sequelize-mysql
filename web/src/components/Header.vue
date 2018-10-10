@@ -1,12 +1,11 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/logo.gif"></a>
         </div>
         <div class="row">
             <!-- <div class="column"> -->
             <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -31,7 +30,6 @@
                             <router-link tag="li" active-class="active" to="/registration" exact><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></router-link>
                         </ul>
                     </div>
-                </div>
             </nav>
         </div>
     </div>
@@ -41,3 +39,4 @@
 import "../assets/style.scss";
 export default {};
 </script>
+
