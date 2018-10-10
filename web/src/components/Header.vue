@@ -4,20 +4,17 @@
             <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/logo.gif"></a>
         </div>
         <div class="row">
-            <br>
-        </div>
-        <div class="row">
             <!-- <div class="column"> -->
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="collapse navbar-collapse" id="myNavBar">
                         <ul class="nav navbar-nav">
                             <router-link tag="li" active-class="active" to="/home" exact><a>Home</a></router-link>
                             <router-link tag="li" active-class="active" to="/nsw" exact><a>NSW</a></router-link>
