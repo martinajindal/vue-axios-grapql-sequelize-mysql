@@ -27,7 +27,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <router-link tag="li" active-class="active" to="/login" exact><a><span class="glyphicon glyphicon-log-in"></span> Login</a></router-link>
-                            <router-link tag="li" active-class="active" to="/registration" exact><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></router-link>
+                            <router-link tag="li" active-class="active" to="/registration" exact><a href="#"><span class="glyphicon glyphicon-user"></span> Register</a></router-link>
                         </ul>
                     </div>
             </nav>

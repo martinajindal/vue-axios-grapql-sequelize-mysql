@@ -9,8 +9,13 @@ import { create, remove } from './resolvers'
 export const userSignup = {
   type: UserType,
   args: {
-    name: {
-      name: 'name',
+    firstname: {
+      name: 'firstname',
+      type: GraphQLString
+    },
+
+    lastname: {
+      name: 'lastname',
       type: GraphQLString
     },
 

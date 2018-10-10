@@ -37,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
       type: 'query',
       operation: 'userLogin',
       data: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {firstname, lastname, email}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -84,7 +84,7 @@ export function register(userDetails) {
       type: 'mutation',
       operation: 'userSignup',
       data: userDetails,
-      fields: ['id', 'name', 'email']
+      fields: ['id', 'firstname', 'lastname', 'email']
     }))
   }
 }
@@ -116,7 +116,7 @@ export function getGenders() {
     return axios.post(routeApi, queryBuilder({
       type: 'query',
       operation: 'userGenders',
-      fields: ['id', 'name']
+      fields: ['id', 'firstname']
     }))
   }
 }

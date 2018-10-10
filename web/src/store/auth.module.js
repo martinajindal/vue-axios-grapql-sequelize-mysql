@@ -13,37 +13,33 @@ const state = {
 }
 
 const getters = {
-  currentUser (state) {
+  currentUser(state) {
     return state.user
   },
-  isAuthenticated (state) {
+  isAuthenticated(state) {
     return state.isAuthenticated
   }
 }
 
 const actions = {
-  [LOGIN] (context, credentials) {
+  [LOGIN](context, credentials) {
     return new Promise((resolve) => {
       ApiService
         .post(API_URL, queryBuilder({
           type: 'query',
           operation: 'userLogin',
           data: credentials,
-          fields: ['user {name, email, role}', 'token']
+          fields: ['user {firstname, lastname, email}', 'token']
         }))
         .then(response => {
-
-          let error = ''
+          let error = '';
           if (response.data.errors && response.data.errors.length > 0) {
-            alert(" auth module:: Got Errors: " + JSON.stringify(response.data.errors))
-
             error = response.data.errors[0].message
+            alert(error)
           } else if (response.data.data.userLogin.token !== '') {
             const token = response.data.data.userLogin.token
             const user = response.data.data.userLogin.user
-            alert(" auth module:: Got it d")
             // loginSetUserLocalStorageAndCookie(token, user)
-            // dispatch(setUser(token, user))
             resolve();
           }
         })
@@ -51,43 +47,43 @@ const actions = {
           alert("Login Response error::: " + error);
         })
 
-    }).then (response => {
+    }).then(response => {
       routes.push({ name: 'home' });
     })
   },
-  [LOGOUT] (context) {
+  [LOGOUT](context) {
     context.commit(PURGE_AUTH)
   },
-  [REGISTER] (context, credentials) {
+  [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService
-        .post('users', {user: credentials})
-        .then(({data}) => {
+        .post('users', { user: credentials })
+        .then(({ data }) => {
           context.commit(SET_AUTH, data.user)
           resolve(data)
         })
-        .catch(({response}) => {
+        .catch(({ response }) => {
           context.commit(SET_ERROR, response.data.errors)
         })
     })
   },
-  [CHECK_AUTH] (context) {
+  [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader()
       ApiService
         .get('user')
-        .then(({data}) => {
+        .then(({ data }) => {
           context.commit(SET_AUTH, data.user)
         })
-        .catch(({response}) => {
+        .catch(({ response }) => {
           context.commit(SET_ERROR, response.data.errors)
         })
     } else {
       context.commit(PURGE_AUTH)
     }
   },
-  [UPDATE_USER] (context, payload) {
-    const {email, username, password, image, bio} = payload
+  [UPDATE_USER](context, payload) {
+    const { email, username, password, image, bio } = payload
     const user = {
       email,
       username,
@@ -100,7 +96,7 @@ const actions = {
 
     return ApiService
       .put('user', user)
-      .then(({data}) => {
+      .then(({ data }) => {
         context.commit(SET_AUTH, data.user)
         return data
       })
@@ -108,16 +104,16 @@ const actions = {
 }
 
 const mutations = {
-  [SET_ERROR] (state, error) {
+  [SET_ERROR](state, error) {
     state.errors = error
   },
-  [SET_AUTH] (state, user) {
+  [SET_AUTH](state, user) {
     state.isAuthenticated = true
     state.user = user
     state.errors = {}
     JwtService.saveToken(state.user.token)
   },
-  [PURGE_AUTH] (state) {
+  [PURGE_AUTH](state) {
     state.isAuthenticated = false
     state.user = {}
     state.errors = {}

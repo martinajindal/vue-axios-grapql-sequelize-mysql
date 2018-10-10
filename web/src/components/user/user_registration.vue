@@ -13,7 +13,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-      <button class="material-button-raised" @click="register">Register</button>
+      <button class="material-button-raised" @click="userRegistration">Register</button>
       <!-- <button class="material-button-raised"  @click="register">Register</button> -->
       Have an account? <router-link to="/login" activeClass="active"><a>Sign In</a></router-link>
     </form>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-
+import { REGISTER } from '../../store/actions.type';
 export default {
   data() {
     return {
@@ -37,7 +37,16 @@ export default {
         password: false
       }
     };
-  }
+  },
+      methods: {
+     userRegistration: function() {
+      if (this.user.email != "" && this.user.password != "") {
+        this.$store
+          .dispatch(REGISTER, this.user)
+          .then(() => this.$router.push({ name: 'home' }))
+      }
+    }
+      }
   // methods: {
   //   register() {
   //     alert("1");

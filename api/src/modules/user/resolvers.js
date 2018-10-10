@@ -8,7 +8,7 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Create
-export async function create(parentValue, { name, email, password }) {
+export async function create(parentValue, { firstname, lastname, email, password }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
 
@@ -18,7 +18,8 @@ export async function create(parentValue, { name, email, password }) {
     // const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
 
     return await models.User.create({
-      name,
+      firstname,
+      lastname,
       email,
       password: passwordHashed
     })
@@ -32,24 +33,25 @@ export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
-    // User does not exists
-    throw new Error(`We do not have any user registered with ${ email } email address. Please signup.`)
+    throw new Error(`User not registered!!`)
   } else {
     const userDetails = user.get()
-
     // User exists
-    const passwordMatch = true
+    let passwordMatch = false;
     // const passwordMatch = await bcrypt.compare(password, userDetails.password)
+    if (password === userDetails.password){
+      passwordMatch = true
+    }
 
     if (!passwordMatch) {
       // Incorrect password
-      throw new Error(`Sorry, the password you entered is incorrect. Please try again.`)
+      throw new Error(`Invalid User Credentials!!`)
     } else {
       const userDetailsToken = {
         id: userDetails.id,
-        name: userDetails.name,
+        firstname: userDetails.firstname,
+        lastname: userDetails.lastname,
         email: userDetails.email,
-        role: userDetails.role
       }
 
       return {

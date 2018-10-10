@@ -20,7 +20,6 @@ const getters = {
 
 const actions = {
   [LOGIN] (context, credentials) {
-    alert("Got it")
     return new Promise((resolve) => {
       ApiService
         .post('users/login', {user: credentials})

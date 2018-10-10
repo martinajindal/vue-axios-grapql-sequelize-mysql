@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     setAuthenticated(status) {
-      //  this.authenticated = status;
+      this.authenticated = status;
     },
     logout() {
       this.authenticated = false;

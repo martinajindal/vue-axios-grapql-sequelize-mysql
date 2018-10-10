@@ -42,7 +42,10 @@ export const routes = [
         name: "registration",
         component: UserRegistrationComponent
     },
-    { path: '/nsw', component: NswComponent },
+    { 
+        path: '/nsw',
+        component: NswComponent
+    },
     { path: '/vic', component: VicComponent },
     { path: '/qld', component: QldComponent },
     { path: '/act', component: ActComponent },
