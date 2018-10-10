@@ -7,8 +7,9 @@ import routes from './router';
 import store from './store';
 import ApiService from './common/api.service'
 import { API_URL } from './common/config'
+import VeeValidate from 'vee-validate';
 
-//Vue.use(VueResource); 
+Vue.use(VeeValidate, { errorBagName: 'vErrors' }); 
 
 ApiService.init()
 

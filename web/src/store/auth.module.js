@@ -57,14 +57,20 @@ const actions = {
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService
-        .post('users', { user: credentials })
+        .post(API_URL, queryBuilder({
+          type: 'mutation',
+          operation: 'userSignup',
+          data: credentials,
+          fields: ['id', 'firstname', 'lastname', 'email']
+        }))
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.user)
-          resolve(data)
+          resolve()
         })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors)
+        .catch(error => {
+          context.commit(SET_ERROR, error)
         })
+    }).then(response => {
+      routes.push({ name: 'home' });
     })
   },
   [CHECK_AUTH](context) {

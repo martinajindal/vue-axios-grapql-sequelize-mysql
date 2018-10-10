@@ -8,11 +8,27 @@
       <input v-model="user.lastname" type="text" class="form-control" placeholder="Last name">
       <br>
       <label for="email" class="sr-only">Email address</label>
-      <input type="email" v-model="user.email" class="form-control" placeholder="Email address" required autofocus>
+      <input v-validate="'required|email'" 
+             type="email" 
+             name="email" 
+             v-model="user.email" 
+             class="form-control" 
+             placeholder="Email address" 
+             autofocus>
       <br>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
+      <input v-model="user.password" 
+             type="password" 
+             id="inputPassword" 
+             name="password" 
+             class="form-control" 
+             placeholder="Password" 
+             required>
+      <input v-validate="'required|confirmed:password'" 
+             name="password_confirmation" 
+             type="password" 
+             class="form-control" 
+             placeholder="Confirm Password">
       <button class="material-button-raised" @click="userRegistration">Register</button>
       <!-- <button class="material-button-raised"  @click="register">Register</button> -->
       Have an account? <router-link to="/login" activeClass="active"><a>Sign In</a></router-link>
@@ -21,7 +37,7 @@
 </template>
 
 <script>
-import { REGISTER } from '../../store/actions.type';
+import { REGISTER } from "../../store/actions.type";
 export default {
   data() {
     return {
@@ -31,49 +47,22 @@ export default {
         email: "",
         password: ""
       },
-      users: [],
+      // users: [],
       errors: {
         email: false,
         password: false
       }
     };
   },
-      methods: {
-     userRegistration: function() {
+  methods: {
+    userRegistration: function() {
       if (this.user.email != "" && this.user.password != "") {
         this.$store
           .dispatch(REGISTER, this.user)
-          .then(() => this.$router.push({ name: 'home' }))
+          .then(() => this.$router.push({ name: "home" }));
       }
     }
-      }
-  // methods: {
-  //   register() {
-  //     alert("1");
-  //     let uri = "http://127.0.0.1:9000/register";
-  //     this.axios.post(uri, this.user).then(response => {
-  //       alert("2");
-  //       console.log(response.data);
-  //       alert("Succefully registered!!");
-  //     });
-  //   }
-
-    // register() {
-    //   alert("response");
-    //   this.$http
-    //     .post("https://myvuejshttp.firebaseio.com/data.json", this.user)
-    //     .then(
-    //       response => {
-    //         alert("Succefully registered!!");
-    //         console.log(response);
-    //          this.$router.replace({ name: "home" });
-    //       },
-    //       error => {
-    //         console.log(error);
-    //       }
-    //     );
-    // },
-  // }
+  }
 };
 </script>
 
