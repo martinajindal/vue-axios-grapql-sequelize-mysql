@@ -11,5 +11,22 @@ export default {
 
     destroyToken() {
         window.localStorage.removeItem(ID_TOKEN_KEY)
+    },
+
+    // Set user token and info in localStorage and cookie
+    loginSetUserLocalStorageAndCookie(token, user) {
+        window.localStorage.setItem(ID_TOKEN_KEY, token)
+        window.localStorage.setItem('user', JSON.stringify(user))
+    },
+
+    authHeader() {
+    // return authorization header with jwt token
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    if (user && user.token) {
+        return { 'Authorization': 'Bearer ' + user.token };
+    } else {
+        return {};
     }
+}
 }

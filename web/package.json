@@ -21,7 +21,9 @@
     "vue-carousel": "^0.14.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "json-to-graphql-query": "1.9.0",
+    "encodeurl": "^1.0.2"
   },
   "browserslist": [
     "> 1%",

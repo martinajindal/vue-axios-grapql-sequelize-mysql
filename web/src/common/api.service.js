@@ -3,6 +3,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import JwtService from './jwt.service'
 import { API_URL } from './config'
+import { jsonToGraphQLQuery } from 'json-to-graphql-query';
+
 
 const ApiService = {
     init() {
@@ -24,14 +26,16 @@ const ApiService = {
     },
 
     get(resource, slug = '') {
+        const graphql_query = encodeURIComponent("query { getAllOrders { id, matterRef, type, status, createdAt } } ");
         return Vue.axios
-            .get(`${resource}/${slug}`)
+            .get(`${resource}/?query=query%20${graphql_query}`)
             .catch((error) => {
-                throw new Error(`[RWV] ApiService ${error}`)
+
             })
     },
 
     post(resource, params) {
+        delete axios.defaults.headers.common["Authorization"]; // or which ever header you have to remove
         return Vue.axios.post(`${resource}`, params)
     },
 

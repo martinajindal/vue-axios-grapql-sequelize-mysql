@@ -23,15 +23,11 @@ export default {
   },
   mounted() {
     if (!this.authenticated) {
-      // this.$emit("message", "Hello World");
       this.$router.replace({ name: "login" });
     }
   },
   methods: {
     setAuthenticated(status) {
-      alert("App setAuthenticated called")
-      this.$emit("message", "Hello World");
-
       this.authenticated = status;
     },
     logout() {

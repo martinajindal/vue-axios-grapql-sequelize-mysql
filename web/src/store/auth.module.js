@@ -1,10 +1,12 @@
 import ApiService from '../common/api.service'
 import JwtService from '../common/jwt.service'
 import queryBuilder from 'gql-query-builder'
-import { LOGIN, VERIFY_TITLE_REF, LOGOUT, REGISTER, CHECK_AUTH, UPDATE_USER } from './actions.type'
+import { LOGIN, VERIFY_TITLE_REF, REPORT, LOGOUT, REGISTER, CHECK_AUTH, UPDATE_USER } from './actions.type'
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from './mutations.type'
 import { API_URL } from '../common/config';
 import routes from '../router';
+import jwtService from '../common/jwt.service';
+import { EventBus } from '../components/event-bus';
 
 const state = {
   errors: null,
@@ -35,27 +37,28 @@ const actions = {
           let error = '';
           if (response.data.errors && response.data.errors.length > 0) {
             error = response.data.errors[0].message
-            alert(error)
+            EventBus.$emit('login-error')
           } else if (response.data.data.userLogin.token !== '') {
             const token = response.data.data.userLogin.token
             const user = response.data.data.userLogin.user
-            // loginSetUserLocalStorageAndCookie(token, user)
+            jwtService.loginSetUserLocalStorageAndCookie(token, user);
             resolve();
           }
         })
         .catch(error => {
-          alert("Login Response error::: " + error);
+          EventBus.$emit('login-error')
         })
 
     }).then(response => {
-      routes.push({ name: 'home' });
     })
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH)
   },
+
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
+      //ApiService.setHeader()
       ApiService
         .post(API_URL, queryBuilder({
           type: 'mutation',
@@ -67,10 +70,10 @@ const actions = {
           resolve()
         })
         .catch(error => {
-          context.commit(SET_ERROR, error)
+
         })
     }).then(response => {
-      routes.push({ name: 'home' });
+      routes.push({ name: 'login' });
     })
   },
   [CHECK_AUTH](context) {
@@ -99,7 +102,6 @@ const actions = {
     if (password) {
       user.password = password
     }
-
     return ApiService
       .put('user', user)
       .then(({ data }) => {

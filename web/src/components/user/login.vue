@@ -2,17 +2,16 @@
   <div class="login-wrapper border border-light">
     <form class="form-signin" @submit.prevent="">
       <h4 class="form-signin-heading">Welcome to SAI Global Property</h4>
-      <p class="help is-danger" v-if="inValidCredential">Please provide a valid credential.</p>
       <br>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input  type="email" v-model="user.email" @blur="validateEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input type="email" v-model="user.email" @blur="validateEmail" class="form-control" placeholder="Email address" required autofocus>
       <br>
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      
+      <p class="error" v-if="inValidCredential">Please provide a valid credential.</p>
+
       <button class="material-button-raised" @click="processForm">Sign in</button>
-      <!-- <button class="material-button-raised"  @click="register">Register</button> -->
-      Not a customer?  <router-link to="/registration" activeClass="active"><a>Register</a></router-link>
+      Not a customer? <router-link to="/registration" activeClass="active"><a>Register</a></router-link>
     </form>
   </div>
 </template>
@@ -26,6 +25,7 @@ import { EventBus } from '../event-bus';
 
 export default {
   name: 'Login',
+  props: ['inValidCredential'],
   data () {
     return {
       inValidCredential: false,
@@ -40,14 +40,26 @@ export default {
       }
     }
   },
+  mounted() {
+ EventBus.$on(
+      "login-error",
+      function() {
+        this.inValidCredential = true;
+        this.$router.push({ name: "login" });
+      }.bind(this)
+    );
+  },
   methods: {
     processForm: function() {
       if (this.user.email != "" && this.user.password != "") {
         this.$store
-          .dispatch(LOGIN, this.user).then(() => {
-          alert("Sending Event");
-          EventBus.$emit('prompt-login');
-          })
+          .dispatch(LOGIN, this.user)
+          .then(() => {
+            this.inInValidCredential = false;
+            EventBus.$emit('prompt-login')})
+          .catch(error => {
+            this.inInValidCredential = true;
+          });
       }
     },
     
@@ -90,7 +102,7 @@ body {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
 }
@@ -124,8 +136,10 @@ body {
   text-transform: uppercase;
   color: #fff;
   background-color: #cc0000;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  font-family: "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  font-family: "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui,
+    -apple-system;
   font-size: 14px;
   font-weight: 500;
   line-height: 36px;
@@ -137,11 +151,13 @@ body {
 
 .material-button-raised:hover,
 .material-button-raised:focus {
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .material-button-raised:active {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .material-button-raised:disabled {
@@ -190,7 +206,7 @@ body {
   height: 32px;
   background-color: #cc0000;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(1) ;
+  transform: translate(-50%, -50%) scale(1);
   transition: opacity 1s, transform 0.5s;
 }
 
@@ -203,5 +219,4 @@ body {
 .material-button-raised:disabled::after {
   opacity: 0;
 }
-
 </style>
