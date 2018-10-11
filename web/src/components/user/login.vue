@@ -18,10 +18,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import axios from 'axios';
 import queryBuilder from 'gql-query-builder';
 import { LOGIN } from '../../store/actions.type';
-
+import { EventBus } from '../event-bus';
 
 export default {
   name: 'Login',
@@ -43,8 +44,10 @@ export default {
     processForm: function() {
       if (this.user.email != "" && this.user.password != "") {
         this.$store
-          .dispatch(LOGIN, this.user)
-          .then(() => this.$router.push({ name: 'home' }))
+          .dispatch(LOGIN, this.user).then(() => {
+          alert("Sending Event");
+          EventBus.$emit('prompt-login');
+          })
       }
     },
     

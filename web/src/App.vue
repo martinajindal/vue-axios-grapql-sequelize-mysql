@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-header></app-header>
+        <app-header @message="setMessage"></app-header>
         <div class="row">
             <div class="col-sm-12">
                 <router-view @authenticated="setAuthenticated"></router-view>
@@ -23,11 +23,15 @@ export default {
   },
   mounted() {
     if (!this.authenticated) {
+      // this.$emit("message", "Hello World");
       this.$router.replace({ name: "login" });
     }
   },
   methods: {
     setAuthenticated(status) {
+      alert("App setAuthenticated called")
+      this.$emit("message", "Hello World");
+
       this.authenticated = status;
     },
     logout() {

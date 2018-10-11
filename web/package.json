@@ -15,12 +15,13 @@
     "gql-query-builder": "1.0.5",
     "js-cookie": "^2.2.0",
     "save-dev": "^2.0.0",
+    "vee-validate": "^2.0.9",
     "vue": "^2.5.11",
     "vue-axios": "2.1.4",
+    "vue-carousel": "^0.14.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "vee-validate": "^2.0.9"
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",

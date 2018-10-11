@@ -1,6 +1,16 @@
   <template>
 
+  <div class="container-fluid">
+    <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+    <slide>
+            <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/images/Banner.jpg"></a>
+    </slide>
+        <slide>
+            <a id="hyperlinkEntLogo"><img id="imgEnterpriseLogo" src="../assets/images/Banner.jpg"></a>
+    </slide>
+  </carousel>
   <div class="container">
+  
     <div class="col-md-8 col-md-offset-1">
       <div class="row">
         <p style="font-size: 20px; font-weight: bold; color: #696969; ">
@@ -35,8 +45,10 @@
     </div>
   </div>
   </div>
+  </div>
 </template>
   <script>
+import { Carousel, Slide } from "vue-carousel";
 </script>
 <style>
 .section-block.section-gray {
