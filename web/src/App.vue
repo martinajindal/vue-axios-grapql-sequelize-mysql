@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-header @message="setMessage"></app-header>
+        <app-header></app-header>
         <div class="row">
             <div class="col-sm-12">
                 <router-view @authenticated="setAuthenticated"></router-view>

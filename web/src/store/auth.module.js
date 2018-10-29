@@ -23,6 +23,24 @@ const getters = {
   }
 }
 
+
+const mutations = {
+  [SET_ERROR](state, error) {
+    state.errors = error
+  },
+  [SET_AUTH](state, user) {
+    state.isAuthenticated = true
+    state.user = user
+    state.errors = {}
+    JwtService.saveToken(state.user.token)
+  },
+  [PURGE_AUTH](state) {
+    state.isAuthenticated = false
+    state.user = {}
+    state.errors = {}
+    JwtService.destroyToken()
+  }
+}
 const actions = {
   [LOGIN](context, credentials) {
     return new Promise((resolve) => {
@@ -40,6 +58,7 @@ const actions = {
             EventBus.$emit('login-error')
           } else if (response.data.data.userLogin.token !== '') {
             const token = response.data.data.userLogin.token
+            // console.log("Token generated:: " + token);
             const user = response.data.data.userLogin.user
             jwtService.loginSetUserLocalStorageAndCookie(token, user);
             resolve();
@@ -52,6 +71,7 @@ const actions = {
     }).then(response => {
     })
   },
+  
   [LOGOUT](context) {
     context.commit(PURGE_AUTH)
   },
@@ -66,16 +86,22 @@ const actions = {
           data: credentials,
           fields: ['id', 'firstname', 'lastname', 'email']
         }))
-        .then(({ data }) => {
-          resolve()
+        .then(response => {
+          let error = '';
+          if (response.data.errors && response.data.errors.length > 0) {
+            error = response.data.errors[0].message
+            EventBus.$emit('already_registered')
+          } else{
+            resolve();
+          }
         })
         .catch(error => {
-
+          EventBus.$emit('already_registered')
         })
     }).then(response => {
-      routes.push({ name: 'login' });
     })
   },
+  
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader()
@@ -111,23 +137,6 @@ const actions = {
   }
 }
 
-const mutations = {
-  [SET_ERROR](state, error) {
-    state.errors = error
-  },
-  [SET_AUTH](state, user) {
-    state.isAuthenticated = true
-    state.user = user
-    state.errors = {}
-    JwtService.saveToken(state.user.token)
-  },
-  [PURGE_AUTH](state) {
-    state.isAuthenticated = false
-    state.user = {}
-    state.errors = {}
-    JwtService.destroyToken()
-  }
-}
 
 export default {
   state,

@@ -29,6 +29,8 @@
              type="password" 
              class="form-control" 
              placeholder="Confirm Password">
+            <div class="textError text-nowrap"><p v-if="userAlreadyRegistered">Email "{{user.email}}" is already registered.</p></div>
+
       <button class="material-button-raised" @click="userRegistration">Register</button>
       <!-- <button class="material-button-raised"  @click="register">Register</button> -->
       Have an account? <router-link to="/login" activeClass="active"><a>Sign In</a></router-link>
@@ -38,9 +40,11 @@
 
 <script>
 import { REGISTER } from "../../store/actions.type";
+import { EventBus } from '../event-bus';
 export default {
   data() {
     return {
+      userAlreadyRegistered: false,
       user: {
         firstname: "",
         lastname: "",
@@ -54,12 +58,21 @@ export default {
       }
     };
   },
+    mounted() {
+ EventBus.$on(
+      "already_registered",
+      function() {
+        this.userAlreadyRegistered = true;
+        this.$router.push({ name: "registration" });
+      }.bind(this)
+    );
+  },
   methods: {
     userRegistration: function() {
       if (this.user.email != "" && this.user.password != "") {
         this.$store
           .dispatch(REGISTER, this.user)
-          .then(() => this.$router.push({ name: "home" }));
+          .then(() => this.$router.push({ name: "login" }));
       }
     }
   }

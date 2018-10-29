@@ -8,7 +8,7 @@
       <br>
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <p class="error" v-if="inValidCredential">Please provide a valid credential.</p>
+      <div class="textError"><p v-if="inValidCredential">Please provide a valid credential.</p></div>
 
       <button class="material-button-raised" @click="processForm">Sign in</button>
       Not a customer? <router-link to="/registration" activeClass="active"><a>Register</a></router-link>
@@ -25,7 +25,6 @@ import { EventBus } from '../event-bus';
 
 export default {
   name: 'Login',
-  props: ['inValidCredential'],
   data () {
     return {
       inValidCredential: false,
@@ -56,7 +55,9 @@ export default {
           .dispatch(LOGIN, this.user)
           .then(() => {
             this.inInValidCredential = false;
-            EventBus.$emit('prompt-login')})
+            EventBus.$emit('prompt-login')
+            this.$router.push({ name: "home" }); 
+            })
           .catch(error => {
             this.inInValidCredential = true;
           });
@@ -78,6 +79,9 @@ export default {
 <style lang="css">
 body {
   background: #ffffff;
+}
+.textError {
+    color: #b60023;
 }
 
 .login-wrapper {

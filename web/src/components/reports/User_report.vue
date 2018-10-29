@@ -1,5 +1,11 @@
 <template>
   <div class="container-fluid">
+    <div class="col-md-10  col-md-offset-1">
+      <p style="font-size: 20px; font-weight: bold; color: #696969; ">
+        View Orders
+      </p>
+      <hr>
+    </div>
     <ordercard v-for="currentOrder in Orders" v-bind:key="currentOrder.id" :item="currentOrder" :order=currentOrder></ordercard>
   </div>
 </template>
@@ -25,7 +31,7 @@ export default {
   methods: {
     getOrders() {
       return new Promise(resolve => {
-        ApiService.setHeader()
+        ApiService.setHeader();
         ApiService.get(
           API_URL,
           queryBuilder({
@@ -42,9 +48,7 @@ export default {
               resolve();
             }
           })
-          .catch(error => {
-
-          });
+          .catch(error => {});
       }).then(response => {
         this.Orders = response.data;
       });

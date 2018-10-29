@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="container-fluid">
         <form>
-            <div class="container">
-                <div class="col-md-8 col-md-offset-1">
-                    <h4>Order VIC Title Search</h4>
+              <div class="container-fluid">
+                <div class="col-md-10  col-md-offset-1">
+                    <h4>VIC Title Search</h4>
                     <hr><br>
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -64,8 +64,8 @@
                 </div>
             </div>
   </form>
-            <div class="container">     
-                <div class="col-md-6 col-md-offset-1">
+            <div class="container-fluid">  
+                <div class="col-md-8 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>Your Information</h4>
